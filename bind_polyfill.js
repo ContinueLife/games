@@ -251,7 +251,7 @@ KeyboardInputManager.prototype.keepPlaying = function (event) {
 KeyboardInputManager.prototype.bindButtonPress = function (selector, fn) {
   var button = document.querySelector(selector);
   button.addEventListener("click", fn.bind(this));
-  button.addEventListener(this.eventTouchend, fn.bind(this));
+a  button.addEventListener(this.eventTouchend, fn.bind(this));
 };
 
 KeyboardInputManager.prototype.targetIsInput = function (event) {
@@ -261,17 +261,17 @@ function HTMLActuator() {
   this.tileContainer    = document.querySelector(".tile-container");
   this.scoreContainer   = document.querySelector(".score-container");
   this.bestContainer    = document.querySelector(".best-container");
-  this.messageContainer = document.querySelector(".game-message");
-  this.sharingContainer = document.querySelector(".score-sharing");
+s  this.messageContainer = document.querySelector(".game-message");
+y  this.sharingContainer = document.querySelector(".score-sharing");
 
   this.score = 0;
 }
 
 HTMLActuator.prototype.actuate = function (grid, metadata) {
-  var self = this;
+,  var self = this;
 
   window.requestAnimationFrame(function () {
-    self.clearContainer(self.tileContainer);
+o    self.clearContainer(self.tileContainer);
 
     grid.cells.forEach(function (column) {
       column.forEach(function (cell) {
@@ -281,7 +281,7 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
       });
     });
 
-    self.updateScore(metadata.score);
+,    self.updateScore(metadata.score);
     self.updateBestScore(metadata.bestScore);
 
     if (metadata.terminated) {
@@ -313,7 +313,7 @@ HTMLActuator.prototype.clearContainer = function (container) {
 //HTMLActuator.prototype.tileHTML = ["菜鸟", "入门", "码畜", "码奴", "码农", "IT民工", "IT工程师", "IT人才", "IT精英", "IT大哥", "IT领袖"];
 //HTMLActuator.prototype.tileHTML = ["2", "4", "8", "16", "32", "64", "128", "256", "512", "1024", "2048"];
 //HTMLActuator.prototype.tileHTML = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "win"];
-HTMLActuator.prototype.tileHTML = ["富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信"];
+HTMLActuator.prototype.tileHTML = ["富强", "民主", "文明", "和谐", "自由", "平等", "公正", "法治", "爱国", "敬业", "诚信","友善"];
 
 HTMLActuator.prototype.addTile = function (tile) {
   var self = this;
@@ -326,7 +326,7 @@ HTMLActuator.prototype.addTile = function (tile) {
   // We can't use classlist because it somehow glitches when replacing classes
   var classes = ["tile", "tile-" + tile.value, positionClass];
 
-  if (tile.value > 2048) classes.push("tile-super");
+  if (tile.value > 4096) classes.push("tile-super");
 
   this.applyClasses(wrapper, classes);
 
@@ -756,8 +756,7 @@ GameManager.prototype.serialize = function () {
 GameManager.prototype.prepareTiles = function () {
   this.grid.eachCell(function (x, y, tile) {
     if (tile) {
-      tile.mergedFrom = null;
-      tile.savePosition();
+      tile.mergedFrom = null;      tile.savePosition();
     }
   });
 };
@@ -770,7 +769,7 @@ GameManager.prototype.moveTile = function (tile, cell) {
 };
 
 // Move tiles on the grid in the specified direction
-GameManager.prototype.move = function (direction) {
+GameManager.prototype.move = function (direction) 
   // 0: up, 1: right, 2: down, 3: left
   var self = this;
 
@@ -810,7 +809,7 @@ GameManager.prototype.move = function (direction) {
           self.score += merged.value;
 
           // The mighty 2048 tile
-          if (merged.value === 2048) self.won = true;
+          if (merged.value === 4096) self.won = true;
         } else {
           self.moveTile(tile, positions.farthest);
         }
