@@ -287,8 +287,7 @@ o    self.clearContainer(self.tileContainer);
     if (metadata.terminated) {
       if (metadata.over) {
         self.message(false); // You lose
-      } else if (metadata.won) {
-        self.message(true); // You win!
+      } else if (metadata.won) {        self.message(true); // You win!
       }
     }
 
@@ -296,10 +295,9 @@ o    self.clearContainer(self.tileContainer);
 };
 
 // Continues the game (both restart and keep playing)
-HTMLActuator.prototype.continueGame = function () {
+HTMLActuator.prototype.continueGame = function () 
   if (typeof ga !== "undefined") {
-    ga("send", "event", "game", "restart");
-  }
+    ga("send", "event", "game", "restart");  }
 
   this.clearMessage();
 };
@@ -326,7 +324,7 @@ HTMLActuator.prototype.addTile = function (tile) {
   // We can't use classlist because it somehow glitches when replacing classes
   var classes = ["tile", "tile-" + tile.value, positionClass];
 
-  if (tile.value > 4096) classes.push("tile-super");
+  if (tile.value > 2048) classes.push("tile-super");
 
   this.applyClasses(wrapper, classes);
 
@@ -809,7 +807,7 @@ GameManager.prototype.move = function (direction)
           self.score += merged.value;
 
           // The mighty 2048 tile
-          if (merged.value === 4096) self.won = true;
+          if (merged.value === 2048) self.won = true;
         } else {
           self.moveTile(tile, positions.farthest);
         }
